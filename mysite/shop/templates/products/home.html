@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block application %}
+<li>
+    <a href="{% url 'products' %}">Каталог</a>
+    {% for product in products %}
+    <a href="{% url 'product' product_id=product.id %}">{{ product.id }}</a>
+    {% endfor %}
+</li>
+<li>
+    <a href="{% url 'contact' %}">Форма обратной связи</a>
+</li>
+
+<table align="center" width="600" bgcolor="#ffcc00">
+   <tr>
+    {% for product in products %}
+        <td> <img src="{{ product.photo.url }}" alt="{{ product.name }}"> </td>
+    {% endfor %}
+   </tr>
+</table>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+
+{% block application %}
+    <form action="/contact/" method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+    <div>
+      <label for="id_subject">Тема:</label>
+      {{ form.subject.errors }}
+      {{ form.subject }}
+    </div>
+    <div>
+      <label for="id_sender">E-mail:</label>
+      {{ form.sender.errors }}
+      {{ form.sender }}
+    </div>
+    <div>
+      <label for="id_message">Сообщение:</label>
+      {{ form.message.errors }}
+      {{ form.message }}
+    </div>
+    <div>
+      {{ form.copy.errors }}
+      <label for="id_copy">Отправить копию себе {{ form.copy }}</label>
+    </div>
+    <input type="submit" value="Отправить"/>
+</form>
+
+<script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU" type="text/javascript"></script>
+<script type="text/javascript">
+        // Как только будет загружен API и готов DOM, выполняем инициализацию
+        ymaps.ready(init);
+ 
+        function init () {
+            // Создание экземпляра карты и его привязка к контейнеру с
+            // заданным id ("map")
+            var myMap = new ymaps.Map('map', {
+                    // При инициализации карты, обязательно нужно указать
+                    // ее центр и коэффициент масштабирования
+                    center: [56.326944, 44.0075], // Нижний Новгород
+                    zoom: 13
+                });
+        }
+    </script>
+
+    <div id="map" style="width:600px; height:400px"></div>
+
+{% endblock %}
